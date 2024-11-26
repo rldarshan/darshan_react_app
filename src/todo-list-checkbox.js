@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import './index.css'
 
 export default function TodoApp() {
   const [items, setItems] = useState([
