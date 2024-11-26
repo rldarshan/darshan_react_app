@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import Toggle_List from './toggle_list';
 import reportWebVitals from './reportWebVitals';
-import TodoApp from './todo-list-checkbox';
+
+import './index.css';
+import Home from './home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <Toggle_List /> */}
-    <TodoApp />
+    <Home />
   </React.StrictMode>
 );
 
