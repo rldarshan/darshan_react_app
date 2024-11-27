@@ -20,7 +20,7 @@ export default function TodoApp() {
   }
 
   return (
-    <div>
+    <div className='container mt-5'>
       <h2>Todos:</h2>
       <ol>
         {items.map((item, index) => (

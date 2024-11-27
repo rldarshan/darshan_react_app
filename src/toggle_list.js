@@ -97,7 +97,8 @@ const messagesData = [
 
 const Toggle_List = () => {
   return (
-    <div>
+    <div className='container mt-5'>
+      <br></br>
       <h1>Toggle List of Messages</h1>
       <ToggleList messages={messagesData} />
     </div>
