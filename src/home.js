@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import './styles.css';
 import App from './App';
 import Toggle_List from './toggle_list';
 import TodoApp from './todo-list-checkbox';
 
 function Home() {
-    function handleActive(e) {
+    const [appActive, setAppActive] = useState('nav-link active');
+    const [todoActive, setTodoActive] = useState('nav-link');
+    const [toggleActive, setToggleActive] = useState('nav-link');
 
+    function handleActive(header) {
+        if (header == 'app') {
+            setAppActive('nav-link active'); 
+            setTodoActive('nav-link'); 
+            setToggleActive('nav-link');
+        } else if(header == 'toggle') {
+            setToggleActive('nav-link active'); 
+            setTodoActive('nav-link'); 
+            setAppActive('nav-link');
+        } else if(header == 'todo') {
+            setTodoActive('nav-link active'); 
+            setAppActive('nav-link'); 
+            setToggleActive('nav-link');
+        }
     }
 
     return (
@@ -31,13 +48,13 @@ function Home() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link className="nav-link" onClick={() => handleActive(e)} to="/">App</Link>
+                        <Link className={appActive} onClick={() => handleActive('app')} to="/">App</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/toggle_list">Toggle List</Link>
+                        <Link className={toggleActive} onClick={() => handleActive('toggle')} to="/toggle_list">Toggle List</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/todo">Todo App</Link>
+                        <Link className={todoActive} onClick={() => handleActive('todo')} to="/todo">Todo App</Link>
                     </li>
                 </ul>
                 </div>
