@@ -16,7 +16,7 @@ function Home() {
     <BrowserRouter>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
-                <a className="navbar-brand" href="javascript:">Navbar</a>
+                <a className="navbar-brand" href="#" onClick={(event) => {event.preventDefault();}}>Navbar</a>
                 <button
                 className="navbar-toggler"
                 type="button"

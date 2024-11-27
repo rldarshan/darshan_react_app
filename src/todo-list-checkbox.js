@@ -10,20 +10,6 @@ export default function TodoApp() {
   ]);
 
   function handleChange(e, item) {
-    /* console.log("===== 1 =====",item)
-         // e.target.checked = e.target.checked
-          item.done = !item.done;
-          
-          let tempItems = [...items];
-          
-          tempItems.forEach(loopitem => { if (loopitem.text == item.text) {
-           console.log(loopitem)
-            loopitem.done = !loopitem.done;
-          } })
-          
-          setItems(tempItems)
-   console.log("===== 2 =====",tempItems) */
-
     setItems((prevItems) =>
       prevItems.map((loopitem) =>
         loopitem.text == item.text
@@ -37,8 +23,8 @@ export default function TodoApp() {
     <div>
       <h2>Todos:</h2>
       <ol>
-        {items.map((item) => (
-          <li key={item.id}>
+        {items.map((item, index) => (
+          <li key={index}>
             <label>
               <input
                 type="checkbox"
@@ -53,5 +39,3 @@ export default function TodoApp() {
     </div>
   );
 }
-
-// ReactDOM.render(<TodoApp />, document.querySelector("#app"));
