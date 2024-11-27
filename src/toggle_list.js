@@ -62,7 +62,7 @@ const ToggleList = ({ messages }) => {
           {message.children ? (
             <>
               <div onClick={() => handleToggle(index)}>
-                {isOpen ? '−' : '+'} {message.text}
+                {isOpen ? '-' : '+'} {message.text}
               </div>
               {isOpen && renderMessages(message.children, level + 1)}
             </>
