@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,10 +11,17 @@ import TodoApp from './todo-list-checkbox';
 import TodoApp2 from './todo-app';
 
 function Home() {
+    const navigate = useNavigate();
     const [appActive, setAppActive] = useState('nav-link active');
     const [todoActive, setTodoActive] = useState('nav-link');
     const [todoCheckActive, setTodoCheckActive] = useState('nav-link');
     const [toggleActive, setToggleActive] = useState('nav-link');
+
+    useEffect(() => {
+        if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
+          handleActive(document.location.pathname.split('/')[1])
+        }
+    }, [navigate]);
 
     function handleActive(header) {
         if (header == 'app') {
@@ -21,17 +29,17 @@ function Home() {
             setTodoActive('nav-link'); 
             setTodoCheckActive('nav-link');
             setToggleActive('nav-link');
-        } else if(header == 'toggle') {
+        } else if(header == 'toggle_list') {
             setToggleActive('nav-link active'); 
             setTodoActive('nav-link'); 
             setAppActive('nav-link');
             setTodoCheckActive('nav-link');
-        } else if(header == 'todo-app') {
+        } else if(header == 'todo_app') {
             setTodoActive('nav-link active'); 
             setAppActive('nav-link'); 
             setToggleActive('nav-link');
             setTodoCheckActive('nav-link');
-        } else if(header == 'todo-check') {
+        } else if(header == 'todo') {
             setTodoCheckActive('nav-link active');
             setTodoActive('nav-link'); 
             setAppActive('nav-link'); 
@@ -40,7 +48,7 @@ function Home() {
     }
 
     return (
-    <BrowserRouter>
+    <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#" onClick={(event) => {event.preventDefault();}}>Navbar</a>
@@ -61,13 +69,13 @@ function Home() {
                         <Link className={appActive} onClick={() => handleActive('app')} to="/">App</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className={toggleActive} onClick={() => handleActive('toggle')} to="/toggle_list">Toggle_List</Link>
+                        <Link className={toggleActive} onClick={() => handleActive('toggle_list')} to="/toggle_list">Toggle_List</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className={todoCheckActive} onClick={() => handleActive('todo-check')} to="/todo">Todo_Check</Link>
+                        <Link className={todoCheckActive} onClick={() => handleActive('todo')} to="/todo">Todo_Check</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className={todoActive} onClick={() => handleActive('todo-app')} to="/todo_app">Todo_App</Link>
+                        <Link className={todoActive} onClick={() => handleActive('todo_app')} to="/todo_app">Todo_App</Link>
                     </li>
                 </ul>
                 </div>
@@ -80,7 +88,7 @@ function Home() {
         <Route path="/todo" element={<TodoApp />} />
         <Route path="/todo_app" element={<TodoApp2 />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
