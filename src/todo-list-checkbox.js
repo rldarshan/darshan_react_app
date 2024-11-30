@@ -1,7 +1,7 @@
 import {useState} from 'react';
-import './index.css'
+import './index.css';
 
-export default function TodoApp() {
+export default function TodoCheckList() {
   const [items, setItems] = useState([
     { text: "Learn JavaScript", done: false },
     { text: "Learn React", done: false },

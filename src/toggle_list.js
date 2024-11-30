@@ -1,49 +1,5 @@
-// import React, { useState } from 'react';
-
-// // Message Component
-// const Message = ({ message, children }) => {
-//   const [isOpen, setIsOpen] = useState(false);
-
-//   return (
-//     <div style={{ marginLeft: message.level * 20 }}>
-//       <div onClick={() => setIsOpen(!isOpen)}>
-//         {isOpen ? '-' : '+'} {message.text}
-//       </div>
-//       {isOpen && children}
-//     </div>
-//   );
-// };
-
-// // Toggle_List Component
-// const Toggle_List = () => {
-//   const messages = [
-//     { id: 1, text: 'message 1', level: 0 },
-//     { id: 2, text: 'message 2', level: 0 },
-//     { id: 3, text: 'message 4', level: 1 },
-//     { id: 4, text: 'message 5', level: 1 },
-//   ];
-
-//   return (
-//     <div>
-//       {messages.map((message, index) => (
-//         <Message key={index} message={message}>
-//           {message.level === 0 &&
-//             messages
-//               .filter((child) => child.level === message.level + 1)
-//               .map((child, i) => <Message key={i} message={child} />)}
-//         </Message>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default Toggle_List;
-
-
-
 import React, { useState } from 'react';
 
-// ToggleList Component
 const ToggleList = ({ messages }) => {
   const [openIndexes, setOpenIndexes] = useState([]);
 

@@ -7,23 +7,33 @@ import './styles.css';
 import App from './App';
 import Toggle_List from './toggle_list';
 import TodoApp from './todo-list-checkbox';
+import TodoApp2 from './todo-app';
 
 function Home() {
     const [appActive, setAppActive] = useState('nav-link active');
     const [todoActive, setTodoActive] = useState('nav-link');
+    const [todoCheckActive, setTodoCheckActive] = useState('nav-link');
     const [toggleActive, setToggleActive] = useState('nav-link');
 
     function handleActive(header) {
         if (header == 'app') {
             setAppActive('nav-link active'); 
             setTodoActive('nav-link'); 
+            setTodoCheckActive('nav-link');
             setToggleActive('nav-link');
         } else if(header == 'toggle') {
             setToggleActive('nav-link active'); 
             setTodoActive('nav-link'); 
             setAppActive('nav-link');
-        } else if(header == 'todo') {
+            setTodoCheckActive('nav-link');
+        } else if(header == 'todo-app') {
             setTodoActive('nav-link active'); 
+            setAppActive('nav-link'); 
+            setToggleActive('nav-link');
+            setTodoCheckActive('nav-link');
+        } else if(header == 'todo-check') {
+            setTodoCheckActive('nav-link active');
+            setTodoActive('nav-link'); 
             setAppActive('nav-link'); 
             setToggleActive('nav-link');
         }
@@ -51,10 +61,13 @@ function Home() {
                         <Link className={appActive} onClick={() => handleActive('app')} to="/">App</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className={toggleActive} onClick={() => handleActive('toggle')} to="/toggle_list">Toggle List</Link>
+                        <Link className={toggleActive} onClick={() => handleActive('toggle')} to="/toggle_list">Toggle_List</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className={todoActive} onClick={() => handleActive('todo')} to="/todo">Todo App</Link>
+                        <Link className={todoCheckActive} onClick={() => handleActive('todo-check')} to="/todo">Todo_Check</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className={todoActive} onClick={() => handleActive('todo-app')} to="/todo_app">Todo_App</Link>
                     </li>
                 </ul>
                 </div>
@@ -65,6 +78,7 @@ function Home() {
         <Route path="/" element={<App />} />
         <Route path="/toggle_list" element={<Toggle_List />} />
         <Route path="/todo" element={<TodoApp />} />
+        <Route path="/todo_app" element={<TodoApp2 />} />
       </Routes>
     </BrowserRouter>
   );
