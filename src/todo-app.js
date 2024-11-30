@@ -157,8 +157,7 @@
 // export default TodoApp2;
 
 
-import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -169,15 +168,8 @@ import FormControl from "react-bootstrap/FormControl";
 import ListGroup from "react-bootstrap/ListGroup";
 
 const TodoApp2 = () => {
-  const navigate = useNavigate();
   const [userInput, setUserInput] = useState("");
   const [list, setList] = useState([]);
-
-//   useEffect(() => {
-//     if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
-//       navigate('/');
-//     }
-//   }, [navigate]);
 
   // Update user input
   const updateInput = (value) => setUserInput(value);
