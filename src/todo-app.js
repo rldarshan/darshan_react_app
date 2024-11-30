@@ -171,30 +171,32 @@ const TodoApp2 = () => {
   const [userInput, setUserInput] = useState("");
   const [list, setList] = useState([]);
 
-  // Update user input
-  const updateInput = (value) => setUserInput(value);
-
-  // Add item to the list
+  // Add item to the list   
   const addItem = () => {
-    if (userInput.trim() !== "") {
-      const newItem = { id: Math.random(), value: userInput };
-      setList([...list, newItem]);
-      setUserInput(""); // Reset input field
+    if(userInput.trim().length){
+        const newItem = {id: Math.floor(10000 + Math.random() * 90000), value: userInput}
+        setList([...list, newItem]);
     }
+    setUserInput("")
   };
 
   // Delete item by id
   const deleteItem = (id) => {
-    setList(list.filter((item) => item.id !== id));
+    const newList = list.filter(item => item.id != id)
+    // setList([...newList])
+    setList(list.filter(item => item.id != id))
   };
 
   // Edit item by index
-  const editItem = (index) => {
-    const updatedList = [...list];
-    const editedTodo = prompt("Edit the todo:");
-    if (editedTodo && editedTodo.trim() !== "") {
-      updatedList[index].value = editedTodo;
-      setList(updatedList);
+  const editItem = (id) => {
+    const data = prompt("Enter new Item value");
+    if(data && data.trim().length){
+        list.forEach(item => { 
+            if(item.id == id) {
+                item.value = data;
+            }
+        })
+        setList([...list])
     }
   };
 
@@ -220,7 +222,7 @@ const TodoApp2 = () => {
               placeholder="add item . . . "
               size="lg"
               value={userInput}
-              onChange={(e) => updateInput(e.target.value)}
+              onChange={(e) => setUserInput(e.target.value)}
               aria-label="add something"
               aria-describedby="basic-addon2"
             />
@@ -254,7 +256,7 @@ const TodoApp2 = () => {
                     >
                       Delete
                     </Button>
-                    <Button variant="light" onClick={() => editItem(index)}>
+                    <Button variant="light" onClick={() => editItem(item.id)}>
                       Edit
                     </Button>
                   </span>
