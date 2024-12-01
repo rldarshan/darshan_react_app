@@ -1,7 +1,9 @@
-import {useState} from 'react';
-import './index.css';
+import { useState } from "react";
+import "./index.css";
+import Button from "react-bootstrap/Button";
 
 export default function TodoCheckList() {
+  const [count, setCount] = useState(0);
   const [items, setItems] = useState([
     { text: "Learn JavaScript", done: false },
     { text: "Learn React", done: false },
@@ -19,8 +21,18 @@ export default function TodoCheckList() {
     );
   }
 
+  function handleCount(action) {
+    if (action == "add") {
+      setCount(count + 1);
+    } else if (action == "subtract" && count) {
+      setCount(count - 1);
+    } else {
+      setCount(0);
+    }
+  }
+
   return (
-    <div className='container mt-5'>
+    <div className="container mt-5">
       <h2>Todos:</h2>
       <ol>
         {items.map((item, index) => (
@@ -36,6 +48,26 @@ export default function TodoCheckList() {
           </li>
         ))}
       </ol>
+
+      <br></br>
+      <br></br>
+
+      <div className="counter-app">
+        <h1>Count - {count}</h1>
+        <br></br>
+
+        <div className="d-flex gap-4">
+          <Button variant="primary" onClick={() => handleCount("add")}>
+            Add
+          </Button>
+          <Button variant="warning" onClick={() => handleCount("subtract")}>
+            Subtract
+          </Button>
+          <Button variant="info" onClick={() => handleCount("reset")}>
+            Reset
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }
