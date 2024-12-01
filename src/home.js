@@ -49,6 +49,10 @@ function Home() {
         }
     }
 
+    function changeTheme(value){
+        console.log(value)
+    }
+
     return (
     <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -80,9 +84,10 @@ function Home() {
                         <Link className={todoActive} onClick={() => handleActive('todo_app')} to="/todo_app">Todo_App</Link>
                     </li>
                 </ul>
-                <Form.Check // prettier-ignore
+                <Form.Check
                     type="switch"
                     label="Dark theme"
+                    onChange={(e) => changeTheme(e.target.checked)}
                 />
                 </div>
             </div>
