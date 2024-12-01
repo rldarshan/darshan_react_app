@@ -63,7 +63,7 @@ export default function TodoCheckList() {
           <Button variant="warning" onClick={() => handleCount("subtract")}>
             Subtract
           </Button>
-          <Button variant="info" onClick={() => handleCount("reset")}>
+          <Button variant="danger" onClick={() => handleCount("reset")}>
             Reset
           </Button>
         </div>

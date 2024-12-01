@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Routes, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Form} from 'react-bootstrap';
 
 import './styles/styles.scss';
 import App from './App';
@@ -16,6 +17,7 @@ function Home() {
     const [todoActive, setTodoActive] = useState('nav-link');
     const [todoCheckActive, setTodoCheckActive] = useState('nav-link');
     const [toggleActive, setToggleActive] = useState('nav-link');
+    const [theme, setTheme] = useState('light');
 
     useEffect(() => {
         if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
@@ -78,6 +80,10 @@ function Home() {
                         <Link className={todoActive} onClick={() => handleActive('todo_app')} to="/todo_app">Todo_App</Link>
                     </li>
                 </ul>
+                <Form.Check // prettier-ignore
+                    type="switch"
+                    label="Dark theme"
+                />
                 </div>
             </div>
         </nav>
