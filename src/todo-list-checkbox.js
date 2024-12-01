@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./index.css";
+import "./styles/index.scss";
 import Button from "react-bootstrap/Button";
 
 export default function TodoCheckList() {

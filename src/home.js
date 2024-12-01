@@ -4,7 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './styles.css';
+import './styles/styles.scss';
 import App from './App';
 import Toggle_List from './toggle_list';
 import TodoApp from './todo-list-checkbox';
