@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import "./styles/index.scss";
 import Button from "react-bootstrap/Button";
 
 export default function TodoCheckList() {
-  const [count, setCount] = useState(0);
+  const initialState = 0;
+
+  // const [count, setCount] = useState(0);
+  const [count_value, dispatch] = useReducer(reducer, initialState);
+
   const [items, setItems] = useState([
     { text: "Learn JavaScript", done: false },
     { text: "Learn React", done: false },
@@ -21,18 +25,18 @@ export default function TodoCheckList() {
     );
   }
 
-  function handleCount(action) {
+  function reducer(state, action) {
     if (action == "add") {
-      setCount(count + 1);
-    } else if (action == "subtract" && count) {
-      setCount(count - 1);
+      return state + 1;
+    } else if (action == "subtract") {
+      return state - 1;
     } else {
-      setCount(0);
+      return 0;
     }
   }
 
   return (
-    <div className="container mt-5">
+    <div className={`container mt-5 ${localStorage.getItem("theme")}`}>
       <h2>Todos:</h2>
       <ol>
         {items.map((item, index) => (
@@ -53,17 +57,17 @@ export default function TodoCheckList() {
       <br></br>
 
       <div className="counter-app">
-        <h1>Count - {count}</h1>
+        <h1>Count - {count_value}</h1>
         <br></br>
 
         <div className="d-flex gap-4">
-          <Button variant="primary" onClick={() => handleCount("add")}>
+          <Button variant="primary" onClick={() => dispatch("add")}>
             Add
           </Button>
-          <Button variant="warning" onClick={() => handleCount("subtract")}>
+          <Button variant="warning" onClick={() => dispatch("subtract")}>
             Subtract
           </Button>
-          <Button variant="danger" onClick={() => handleCount("reset")}>
+          <Button variant="danger" onClick={() => dispatch("reset")}>
             Reset
           </Button>
         </div>
