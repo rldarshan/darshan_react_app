@@ -4,8 +4,6 @@ import Button from "react-bootstrap/Button";
 
 export default function TodoCheckList() {
   const initialState = 0;
-
-  // const [count, setCount] = useState(0);
   const [count_value, dispatch] = useReducer(reducer, initialState);
 
   const [items, setItems] = useState([
@@ -31,7 +29,7 @@ export default function TodoCheckList() {
     } else if (action == "subtract") {
       return state - 1;
     } else {
-      return 0;
+      return initialState;
     }
   }
 
