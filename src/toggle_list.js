@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {BtnComponent} from './App';
 
 const ToggleList = ({ messages }) => {
   const [openIndexes, setOpenIndexes] = useState([]);
@@ -52,9 +53,14 @@ const messagesData = [
 ];
 
 const Toggle_List = () => {
+  const handleClick = () => {
+    alert('This message is comming from toggle_list component.')
+  }
+
   return (
     <div className='container mt-5'>
-      <br></br>
+      <BtnComponent handleClick={handleClick} />
+      <br />
       <h1>Toggle List of Messages</h1>
       <ToggleList messages={messagesData} />
     </div>

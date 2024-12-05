@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form} from 'react-bootstrap';
 
 import './styles/styles.scss';
-import App from './App';
+import {App} from './App';
 import Toggle_List from './toggle_list';
 import TodoApp from './todo-list-checkbox';
 import TodoApp2 from './todo-app';

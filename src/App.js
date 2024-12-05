@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./styles/styles.scss";
 
-export default function App() {
+export function App() {
   const [person, setPerson] = useState({
     name: "Niki de Saint Phalle",
     artwork: {
@@ -50,8 +50,7 @@ export default function App() {
 
   return (
     <div className="container d-grid justify-content-center">
-      <br></br>
-
+      <br />
       <div className="form">
         <div className="d-flex">
           <label>
@@ -85,7 +84,6 @@ export default function App() {
         </div>
       </div>
 
-      <br></br>
       <div>
         <p>
           <i>{person.artwork.title}</i>
@@ -98,4 +96,11 @@ export default function App() {
       </div>
     </div>
   );
+}
+
+export function BtnComponent({handleClick}){
+  return (
+  <button className="btn btn-primary component-btn" onClick={handleClick}>
+    Component Interaction
+  </button>);
 }
