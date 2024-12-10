@@ -99,8 +99,14 @@ export function App() {
 }
 
 export function BtnComponent({handleClick}){
+  const cmp_btn = {
+    width: "191px",
+    height: "45px",
+    lineHeight: "14px"
+  }
+
   return (
-  <button className="btn btn-primary component-btn" onClick={handleClick}>
+  <button className="btn btn-primary" style={cmp_btn} onClick={handleClick}>
     Component Interaction
   </button>);
 }
