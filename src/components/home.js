@@ -10,6 +10,7 @@ import {App} from './App';
 import Toggle_List from './toggle_list';
 import TodoApp from './todo-list-checkbox';
 import TodoApp2 from './todo-app';
+import Counter from './redux_counter';
 
 function Home() {
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ function Home() {
     const [todoActive, setTodoActive] = useState('nav-link');
     const [todoCheckActive, setTodoCheckActive] = useState('nav-link');
     const [toggleActive, setToggleActive] = useState('nav-link');
+    const [counterActive, setCounterActive] = useState('nav-link');
     const [theme, setTheme] = useState('light');
 
     useEffect(() => {
@@ -33,18 +35,28 @@ function Home() {
             setTodoActive('nav-link'); 
             setTodoCheckActive('nav-link');
             setToggleActive('nav-link');
+            setCounterActive('nav-link');
         } else if(header == 'toggle_list') {
             setToggleActive('nav-link active'); 
             setTodoActive('nav-link'); 
             setAppActive('nav-link');
             setTodoCheckActive('nav-link');
+            setCounterActive('nav-link');
         } else if(header == 'todo_app') {
             setTodoActive('nav-link active'); 
             setAppActive('nav-link'); 
             setToggleActive('nav-link');
             setTodoCheckActive('nav-link');
+            setCounterActive('nav-link');
         } else if(header == 'todo') {
             setTodoCheckActive('nav-link active');
+            setTodoActive('nav-link'); 
+            setAppActive('nav-link'); 
+            setToggleActive('nav-link');
+            setCounterActive('nav-link');
+        } else if(header == 'redux_counter') {
+            setCounterActive('nav-link active');
+            setTodoCheckActive('nav-link');
             setTodoActive('nav-link'); 
             setAppActive('nav-link'); 
             setToggleActive('nav-link');
@@ -76,6 +88,9 @@ function Home() {
                     <li className="nav-item">
                         <Link className={appActive} onClick={() => handleActive('app')} to="/">App</Link>
                     </li>
+                    {/* <li className="nav-item">
+                        <Link className={counterActive} onClick={() => handleActive('redux_counter')} to="/redux_counter">Redux_Counter</Link>
+                    </li> */}
                     <li className="nav-item">
                         <Link className={toggleActive} onClick={() => handleActive('toggle_list')} to="/toggle_list">Toggle_List</Link>
                     </li>
@@ -100,6 +115,7 @@ function Home() {
         <Route path="/toggle_list" element={<Toggle_List />} />
         <Route path="/todo" element={<TodoApp />} />
         <Route path="/todo_app" element={<TodoApp2 />} />
+        {/* <Route path="/redux_counter" element={<Counter />} /> */}
       </Routes>
     </>
   );
