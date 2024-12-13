@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./styles/styles.scss";
+import "../styles/styles.scss";
 
 export function App() {
   const [person, setPerson] = useState({

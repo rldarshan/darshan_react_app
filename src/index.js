@@ -4,7 +4,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 
 import './styles/index.scss';
-import Home from './home';
+import Home from './components/home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

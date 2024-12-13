@@ -1,5 +1,5 @@
 import { useReducer, useState } from "react";
-import "./styles/index.scss";
+import "../styles/index.scss";
 import Button from "react-bootstrap/Button";
 
 export default function TodoCheckList() {

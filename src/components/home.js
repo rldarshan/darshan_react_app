@@ -5,7 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Form} from 'react-bootstrap';
 
-import './styles/styles.scss';
+import '../styles/styles.scss';
 import {App} from './App';
 import Toggle_List from './toggle_list';
 import TodoApp from './todo-list-checkbox';
@@ -23,6 +23,8 @@ function Home() {
         if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
           handleActive(document.location.pathname.split('/')[1])
         }
+
+        document.title = "Test title"
     }, [navigate]);
 
     function handleActive(header) {
