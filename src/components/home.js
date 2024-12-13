@@ -12,6 +12,9 @@ import TodoApp from './todo-list-checkbox';
 import TodoApp2 from './todo-app';
 import Counter from './redux_counter';
 
+import { Provider } from 'react-redux';
+import store from '../redux/store';
+
 function Home() {
     const navigate = useNavigate();
     const [appActive, setAppActive] = useState('nav-link active');
@@ -88,9 +91,9 @@ function Home() {
                     <li className="nav-item">
                         <Link className={appActive} onClick={() => handleActive('app')} to="/">App</Link>
                     </li>
-                    {/* <li className="nav-item">
+                    <li className="nav-item">
                         <Link className={counterActive} onClick={() => handleActive('redux_counter')} to="/redux_counter">Redux_Counter</Link>
-                    </li> */}
+                    </li>
                     <li className="nav-item">
                         <Link className={toggleActive} onClick={() => handleActive('toggle_list')} to="/toggle_list">Toggle_List</Link>
                     </li>
@@ -110,14 +113,16 @@ function Home() {
             </div>
         </nav>
 
+    <Provider store={store}>
       <Routes>
         <Route path="/" element={<App />} />
+            <Route path="/redux_counter" element={<Counter />} />
         <Route path="/toggle_list" element={<Toggle_List />} />
         <Route path="/todo" element={<TodoApp />} />
         <Route path="/todo_app" element={<TodoApp2 />} />
-        {/* <Route path="/redux_counter" element={<Counter />} /> */}
       </Routes>
-    </>
+    </Provider>
+      </>
   );
 }
 
