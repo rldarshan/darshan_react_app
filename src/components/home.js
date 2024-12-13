@@ -17,11 +17,7 @@ import store from '../redux/store';
 
 function Home() {
     const navigate = useNavigate();
-    const [appActive, setAppActive] = useState('nav-link active');
-    const [todoActive, setTodoActive] = useState('nav-link');
-    const [todoCheckActive, setTodoCheckActive] = useState('nav-link');
-    const [toggleActive, setToggleActive] = useState('nav-link');
-    const [counterActive, setCounterActive] = useState('nav-link');
+    const [activeNav, setActiveNav] = useState('app');
     const [theme, setTheme] = useState('light');
 
     useEffect(() => {
@@ -32,39 +28,13 @@ function Home() {
         document.title = "Test title"
     }, [navigate]);
 
-    function handleActive(header) {
-        if (header == 'app') {
-            setAppActive('nav-link active'); 
-            setTodoActive('nav-link'); 
-            setTodoCheckActive('nav-link');
-            setToggleActive('nav-link');
-            setCounterActive('nav-link');
-        } else if(header == 'toggle_list') {
-            setToggleActive('nav-link active'); 
-            setTodoActive('nav-link'); 
-            setAppActive('nav-link');
-            setTodoCheckActive('nav-link');
-            setCounterActive('nav-link');
-        } else if(header == 'todo_app') {
-            setTodoActive('nav-link active'); 
-            setAppActive('nav-link'); 
-            setToggleActive('nav-link');
-            setTodoCheckActive('nav-link');
-            setCounterActive('nav-link');
-        } else if(header == 'todo') {
-            setTodoCheckActive('nav-link active');
-            setTodoActive('nav-link'); 
-            setAppActive('nav-link'); 
-            setToggleActive('nav-link');
-            setCounterActive('nav-link');
-        } else if(header == 'redux_counter') {
-            setCounterActive('nav-link active');
-            setTodoCheckActive('nav-link');
-            setTodoActive('nav-link'); 
-            setAppActive('nav-link'); 
-            setToggleActive('nav-link');
-        }
-    }
+    const handleActive = (header) => {
+        setActiveNav(header);
+    };
+
+    const getNavClass = (header) => {
+        return header === activeNav ? 'nav-link active' : 'nav-link';
+    };
 
     function changeTheme(value){
         console.log(value)
@@ -89,19 +59,19 @@ function Home() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <Link className={appActive} onClick={() => handleActive('app')} to="/">App</Link>
+                        <Link className={getNavClass('app')} onClick={() => handleActive('app')} to="/">App</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className={counterActive} onClick={() => handleActive('redux_counter')} to="/redux_counter">Redux_Counter</Link>
+                        <Link className={getNavClass('redux_counter')} onClick={() => handleActive('redux_counter')} to="/redux_counter">Redux_Counter</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className={toggleActive} onClick={() => handleActive('toggle_list')} to="/toggle_list">Toggle_List</Link>
+                        <Link className={getNavClass('toggle_list')} onClick={() => handleActive('toggle_list')} to="/toggle_list">Toggle_List</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className={todoCheckActive} onClick={() => handleActive('todo')} to="/todo">Todo_Check</Link>
+                        <Link className={getNavClass('todo')} onClick={() => handleActive('todo')} to="/todo">Todo_Check</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className={todoActive} onClick={() => handleActive('todo_app')} to="/todo_app">Todo_App</Link>
+                        <Link className={getNavClass('todo_app')} onClick={() => handleActive('todo_app')} to="/todo_app">Todo_App</Link>
                     </li>
                 </ul>
                 <Form.Check
@@ -116,7 +86,7 @@ function Home() {
     <Provider store={store}>
       <Routes>
         <Route path="/" element={<App />} />
-            <Route path="/redux_counter" element={<Counter />} />
+        <Route path="/redux_counter" element={<Counter />} />
         <Route path="/toggle_list" element={<Toggle_List />} />
         <Route path="/todo" element={<TodoApp />} />
         <Route path="/todo_app" element={<TodoApp2 />} />
