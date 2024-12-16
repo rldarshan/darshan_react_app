@@ -47,3 +47,24 @@
   height: 45px;
   line-height: 14px;
 }
+
+.mines-app {
+  display: flex;
+  height: 94vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.innerdiv {
+  padding: 20px;
+  border: 1px solid;
+
+  .mine-spot {
+    color: red;
+    font-weight: bold;
+  }
+}
+
+// .innerdiv:has(.mines-app) {
+//   border: 1px solid red;
+// }

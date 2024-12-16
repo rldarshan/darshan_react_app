@@ -11,6 +11,7 @@ import Toggle_List from './toggle_list';
 import TodoApp from './todo-list-checkbox';
 import TodoApp2 from './todo-app';
 import Counter from './redux_counter';
+import MinesApp from './mines_app';
 
 import { Provider } from 'react-redux';
 import store from '../redux/store';
@@ -73,6 +74,9 @@ function Home() {
                     <li className="nav-item">
                         <Link className={getNavClass('todo_app')} onClick={() => handleActive('todo_app')} to="/todo_app">Todo_App</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className={getNavClass('mines_app')} onClick={() => handleActive('mines_app')} to="/mines_app">Mines_App</Link>
+                    </li>
                 </ul>
                 <Form.Check
                     type="switch"
@@ -90,6 +94,7 @@ function Home() {
         <Route path="/toggle_list" element={<Toggle_List />} />
         <Route path="/todo" element={<TodoApp />} />
         <Route path="/todo_app" element={<TodoApp2 />} />
+        <Route path="/mines_app" element={<MinesApp />} />
       </Routes>
     </Provider>
       </>
