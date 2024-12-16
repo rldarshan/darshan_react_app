@@ -46,7 +46,7 @@ const Board = ({ rows, columns, mines }) => {
   return (
     <div className="mines-app">
       {board.map((row, rowIndex) => (
-        <div key={rowIndex}>
+        <div className="outerdiv" key={rowIndex}>
           {row.map((cell, colIndex) => (
             <div
               key={colIndex}
