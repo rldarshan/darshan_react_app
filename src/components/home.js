@@ -7,6 +7,7 @@ import {Form} from 'react-bootstrap';
 
 import '../styles/styles.scss';
 import {App} from './App';
+import StudentApp from './filter_student';
 import Toggle_List from './toggle_list';
 import TodoApp from './todo-list-checkbox';
 import TodoApp2 from './todo-app';
@@ -77,6 +78,9 @@ function Home() {
                     <li className="nav-item">
                         <Link className={getNavClass('mines_app')} onClick={() => handleActive('mines_app')} to="/mines_app">Mines_App</Link>
                     </li>
+                    <li className="nav-item">
+                        <Link className={getNavClass('student_app')} onClick={() => handleActive('student_app')} to="/student_app">Student_App</Link>
+                    </li>
                 </ul>
                 <Form.Check
                     type="switch"
@@ -95,6 +99,7 @@ function Home() {
         <Route path="/todo" element={<TodoApp />} />
         <Route path="/todo_app" element={<TodoApp2 />} />
         <Route path="/mines_app" element={<MinesApp />} />
+        <Route path="/student_app" element={<StudentApp />} />
       </Routes>
     </Provider>
       </>
