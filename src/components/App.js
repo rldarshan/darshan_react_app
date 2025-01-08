@@ -3,14 +3,70 @@ import "../styles/styles.scss";
 
 export function App() {
   const [person, setPerson] = useState({
-    name: "Niki de Saint Phalle",
-    artwork: {
-      title: "Blue Nana",
-      city: "Hamburg",
-      image: "https://i.imgur.com/Sd1AgUOm.jpg",
-    },
+    name: "",
+    email: "",
+    password: "",
   });
-  
+  const url = "https://nodejs-app-dxou.onrender.com"; // 'http://localhost:4000/';
+
+  function fetchData() {
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }
+
+  function postData() {
+    if (
+      person.password.trim().length &&
+      person.email.trim().length &&
+      person.name.trim().length
+    ) {
+      fetch(`${url}/register`, {
+        method: "POST",
+        headers: {
+          // 'Authorization': 'Bearer YOUR_JWT_TOKEN', // Replace with your JWT token
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(person),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error("Error:", error));
+    }
+
+    setPerson({
+      name: "",
+      email: "",
+      password: "",
+    });
+  }
+
+  function login() {
+    if (person.password.trim().length && person.email.trim().length) {
+      fetch(`${url}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(person),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+        .catch((error) => console.error("Error:", error));
+    }
+
+    setPerson({
+      name: "",
+      email: "",
+      password: "",
+    });
+  }
+
   function handleNameChange(e) {
     setPerson({
       ...person,
@@ -18,35 +74,29 @@ export function App() {
     });
   }
 
-  function handleTitleChange(e) {
+  function handleEmailChange(e) {
     setPerson({
       ...person,
-      artwork: {
-        ...person.artwork,
-        title: e.target.value,
-      },
+      email: e.target.value,
     });
   }
 
-  function handleCityChange(e) {
+  function handlePasswordChange(e) {
     setPerson({
       ...person,
-      artwork: {
-        ...person.artwork,
-        city: e.target.value,
-      },
+      password: e.target.value,
     });
   }
 
-  function handleImageChange(e) {
-    setPerson({
-      ...person,
-      artwork: {
-        ...person.artwork,
-        image: e.target.value,
-      },
-    });
-  }
+  // function handleImageChange(e) {
+  //   setPerson({
+  //     ...person,
+  //     artwork: {
+  //       ...person.artwork,
+  //       image: e.target.value,
+  //     },
+  //   });
+  // }
 
   return (
     <div className="container d-grid justify-content-center">
@@ -57,56 +107,78 @@ export function App() {
             Name:
             <input value={person.name} onChange={handleNameChange} />
           </label>
-          {!person.name.trim().length && <span className="error">Name is required</span>}
+          {!person.name.trim().length && (
+            <span className="error">Name is required</span>
+          )}
         </div>
 
         <div className="d-flex">
           <label>
-            Title:
-            <input value={person.artwork.title} onChange={handleTitleChange} />
+            Email:
+            <input value={person.email} onChange={handleEmailChange} />
           </label>
-          {!person.artwork.title.trim().length && <span className="error">Title is required</span>}
-          </div>
+          {!person.email.trim().length && (
+            <span className="error">Email is required</span>
+          )}
+        </div>
 
         <div className="d-flex">
           <label>
-            City:
-            <input value={person.artwork.city} onChange={handleCityChange} />
+            Password:
+            <input value={person.password} onChange={handlePasswordChange} />
           </label>
-          {!person.artwork.city.trim().length && <span className="error">City is required</span>}
-          </div>
+          {!person.password.trim().length && (
+            <span className="error">Password is required</span>
+          )}
+        </div>
 
-        <div className="d-flex">
+        {/* <div className="d-flex">
           <label>
             Image:
             <input value={person.artwork.image} onChange={handleImageChange} />
           </label>
-        </div>
+        </div> */}
       </div>
 
       <div>
-        <p>
-          <i>{person.artwork.title}</i>
+        {/* <p>
+          <i>{person.email}</i>
           {" by "}
           {person.name}
           <br />
-          (located in {person.artwork.city})
+          (located in {person.password})
         </p>
-        <img src={person.artwork.image} alt={person.artwork.title} />
+        <img src={person.artwork.image} alt={person.email} /> */}
+        <br></br>
+        <br></br>
+        <div style={{ display: "inline-flex", gap: "20px" }}>
+          <button className="btn btn-primary" onClick={fetchData}>
+            Fetch Data
+          </button>
+          <br></br>
+          <button className="btn btn-warning" onClick={postData}>
+            Post Data
+          </button>
+          <br></br>
+          <button className="btn btn-danger" onClick={login}>
+            Login
+          </button>
+        </div>
       </div>
     </div>
   );
 }
 
-export function BtnComponent({handleClick}){
+export function BtnComponent({ handleClick }) {
   const cmp_btn = {
     width: "191px",
     height: "45px",
-    lineHeight: "14px"
-  }
+    lineHeight: "14px",
+  };
 
   return (
-  <button className="btn btn-primary" style={cmp_btn} onClick={handleClick}>
-    Component Interaction
-  </button>);
+    <button className="btn btn-primary" style={cmp_btn} onClick={handleClick}>
+      Component Interaction
+    </button>
+  );
 }
