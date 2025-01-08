@@ -9,7 +9,7 @@ import '../styles/styles.scss';
 import {App} from './App';
 import StudentApp from './filter_student';
 import Toggle_List from './toggle_list';
-import TodoApp from './todo-list-checkbox';
+import TodoApp from './todo-list-checkbox_useReducer';
 import TodoApp2 from './todo-app';
 import Counter from './redux_counter';
 import MinesApp from './mines_app';
